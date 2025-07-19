@@ -3,72 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Курс: Английский для начинающих</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .carousel-container {
-      position: relative;
-      overflow: hidden;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
-    .carousel-image {
-      min-width: 100%;
-      flex-shrink: 0;
-      object-fit: cover;
-    }
-  </style>
+  <title>Курс «Английский»</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-800">
-  <!-- Карусель фотографий -->
-  <section class="w-full max-w-3xl mx-auto mt-6 carousel-container">
-    <div id="carousel-track" class="carousel-track rounded-lg shadow-lg">
-      <img src="/Users/georg/Downloads/Telegram Desktop/1COA4277.jpg" class="carousel-image" alt="Фото 1">
-      <img src="/Users/georg/Downloads/Telegram Desktop/IMG_20250625_185156.jpg" class="carousel-image" alt="Фото 2">
-      <img src="/Users/georg/Downloads/Telegram Desktop/1COA5317.jpg" class="carousel-image" alt="Фото 3">
-    </div>
-    <div class="absolute top-1/2 left-0 transform -translate-y-1/2">
-      <button onclick="prevImage()" class="bg-white bg-opacity-70 px-3 py-2 rounded-r hover:bg-opacity-100">←</button>
-    </div>
-    <div class="absolute top-1/2 right-0 transform -translate-y-1/2">
-      <button onclick="nextImage()" class="bg-white bg-opacity-70 px-3 py-2 rounded-l hover:bg-opacity-100">→</button>
-    </div>
-  </section>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Хедер -->
+  <header id="courseHeader" class="bg-gradient-to-r from-blue-700 via-blue-500 to-sky-400 text-white py-16 px-6 text-center transition-all duration-500 fixed top-0 w-full z-50 shadow-lg">
+    <h1 class="text-4xl md:text-5xl font-bold mb-2">Курс «Английский»</h1>
+    <p class="text-lg md:text-xl max-w-2xl mx-auto">Освой английский язык с нуля до уверенного общения</p>
+  </header>
+
+  <!-- Заглушка для хедера -->
+  <div class="h-64 md:h-72"></div>
 
   <!-- Описание курса -->
-  <section class="max-w-3xl mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-4">Английский для начинающих</h1>
-    <p class="text-gray-700 leading-relaxed">
-      Этот курс создан для тех, кто начинает изучение английского языка с нуля. Вы научитесь основам грамматики, базовой лексике и простым фразам для повседневного общения. Формат занятий — онлайн, в удобное для вас время. Подходит взрослым и подросткам.
+  <section class="px-6 py-12 max-w-4xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">О курсе</h2>
+    <p class="text-lg leading-relaxed">
+      Этот курс предназначен для тех, кто хочет освоить английский язык с нуля. Вы научитесь говорить, читать и писать на английском, а также понимать носителей языка.
     </p>
   </section>
 
-  <!-- Кнопка покупки -->
-  <section class="text-center pb-12">
-    <a href="#" class="inline-block bg-blue-600 text-white text-lg font-medium px-8 py-4 rounded-full hover:bg-blue-700 transition">Приобрести курс</a>
+  <!-- Преимущества -->
+  <section class="bg-white py-12 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-semibold mb-8">Что вы получите</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-blue-50 p-6 rounded-xl shadow-sm">
+          <h3 class="font-bold text-lg mb-2">Практика разговорной речи</h3>
+          <p>Отработаете реальные диалоги и ситуации во время обучения.</p>
+        </div>
+        <div class="bg-blue-50 p-6 rounded-xl shadow-sm">
+          <h3 class="font-bold text-lg mb-2">Поддержка куратора</h3>
+          <p>Куратор отвечает на вопросы и помогает решать проблемы.</p>
+        </div>
+        <div class="bg-blue-50 p-6 rounded-xl shadow-sm">
+          <h3 class="font-bold text-lg mb-2">Сертификат</h3>
+          <p>После окончания получите сертификат с подтверждением навыков.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Галерея -->
+  <section class="py-12 px-6 max-w-6xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-6">Примеры работ</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+      <img src="cources/frontend1.jpg" alt="Пример 1" class="rounded-lg shadow-md" />
+      <img src="cources/frontend2.jpg" alt="Пример 2" class="rounded-lg shadow-md" />
+      <img src="cources/frontend3.jpg" alt="Пример 3" class="rounded-lg shadow-md" />
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section class="bg-gray-100 py-12 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl font-semibold mb-6">Отзывы студентов</h2>
+      <div class="space-y-6">
+        <blockquote class="bg-white p-6 rounded-xl shadow-sm">
+          <p class="italic">«Отличный курс! С нуля собрал свой первый лендинг, теперь работаю на фрилансе»</p>
+          <footer class="mt-2 text-sm text-gray-500">— Артём П.</footer>
+        </blockquote>
+        <blockquote class="bg-white p-6 rounded-xl shadow-sm">
+          <p class="italic">«Наглядно, структурно, современно.»</p>
+          <footer class="mt-2 text-sm text-gray-500">— Елена С.</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Кнопка "Приобрести" -->
+  <section class="text-center py-16">
+    <h2 class="text-2xl font-semibold mb-6">Готовы начать?</h2>
+    <a href="index.html?course=frontend#contact">
+      <button class="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-6 py-3 rounded-full shadow-md transition-all">
+        Приобрести курс
+      </button>
+    </a>
   </section>
 
   <script>
-    let currentIndex = 0;
-    const track = document.getElementById('carousel-track');
-    const slides = document.querySelectorAll('.carousel-image');
-    const total = slides.length;
+    const header = document.getElementById('courseHeader');
+    const fullHeaderHeight = 104;
 
-    function updateSlidePosition() {
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % total;
-      updateSlidePosition();
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + total) % total;
-      updateSlidePosition();
-    }
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > fullHeaderHeight) {
+        header.classList.add('py-2');
+        header.classList.remove('py-16');
+        header.innerHTML = '<h1 class="text-xl font-semibold">Frontend-разработка</h1>';
+      } else {
+        header.classList.remove('py-2');
+        header.classList.add('py-16');
+        header.innerHTML = `
+          <h1 class="text-4xl md:text-5xl font-bold mb-2">Курс «Frontend-разработка»</h1>
+          <p class="text-lg md:text-xl max-w-2xl mx-auto">Освой HTML, CSS, JavaScript и создавай современные веб-приложения</p>
+        `;
+      }
+    });
   </script>
+
 </body>
 </html>
