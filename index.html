@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>English Teacher Landing Page</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .allura {
+      font-family: 'Allura', cursive;
+      font-size: larger
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -101,13 +109,168 @@
     </div>
   </div>
 
+  <!-- FirstView Section -->
+  <section class="pt-28 md:pt-44 pb-4 px-4 bg-blue-100">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gray-900" style="line-height: 1.2;">
+        ШКОЛА <span class="text-blue-700 mb-5">АНГЛИЙСКОГО</span><br class="mb-5">
+        ЯЗЫКА<br>
+        <span class="text-blue-700">MARY POPPINS</span>
+      </h1>
+      
+      
+
+      <div id="podrobnee" class="flex items-center mb-3 gap-4 max-w-4xl">
+        <div class="bg-white rounded-2xl p-4 shadow-lg flex items-center space-x-4 border border-blue-100 flex-1">
+          <div class="text-left">
+            <div class="max-w-xl">
+              <p class="text-sm md:text-xl font-semibold text-gray-900">
+                Присоединитесь <span class="text-blue-600 font-bold">сообществу учеников</span>,<br>
+                изучающих английский с магией и удовольствием<br>
+                по методике <span class="text-blue-600">Mary Poppins</span> - практически совершенного<br>
+                способа изучения языка!
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="flex-shrink-0">
+          <img src="favicon.png" alt="Mary Poppins Logo" class="w-20 h-20 md:w-30 md:h-24 rounded-xl shadow-lg border-2 border-white hover:scale-110 transition-transform duration-300 object-cover" />
+        </div> -->
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-8 grid grid-cols-3 md:grid-cols-3 gap-4 max-w-4xl">
+        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-2 text-center shadow-lg">
+          <div class="text-xl font-bold">20+</div>
+          <div class="text-sm opacity-90">лет опыта</div>
+        </div>
+        <div class="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-2 text-center shadow-lg">
+          <div class="text-xl font-bold">5000+</div>
+          <div class="text-sm opacity-90">выпускников</div>
+        </div>
+        <div class="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-2 text-center shadow-lg">
+          <div class="text-xl font-bold">4.9★</div>
+          <div class="text-sm opacity-90">рейтинг</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- About Section (First) -->
-  <section id="about" class="py-12 px-4 mt-16">
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center">
-      <img src="tutor.png" alt="Teacher" class="rounded-2xl shadow-lg w-48 md:w-1/4 mx-auto mb-6 md:mb-0 md:mr-8" />
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">О преподавателе</h3>
-        <p class="text-gray-600">[Здесь будет краткая информация об учительнице, её опыте, образовании и подходе к обучению.]</p>
+  <section id="about" class="py-4 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-4 md:p-8 border border-white/20">
+        <div class="flex flex-col lg:flex-row items-start gap-12">
+          <!-- Teacher Image -->
+          <div class="lg:w-1/3 flex justify-center w-full">
+            <div class="relative group">
+              <img src="tutor.png" alt="Elena Stanceva" class="rounded-2xl shadow-xl w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-white" />
+            </div>
+          </div>
+          
+          <!-- Teacher Info -->
+          <div class="lg:w-2/3 w-full">
+            <!-- Main Title and Tags - Desktop Right, Mobile Center -->
+            <div class="text-center lg:text-left mb-8">
+              <div class="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                <span class="text-3xl">🌍</span>
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-800">Elena Stanceva</h3>
+              </div>
+              <p class="text-xl text-blue-600 font-semibold mb-4">ваш проводник в мир английского языка</p>
+              <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-sm">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">Преподаватель с 20+ летним опытом</span>
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">IELTS</span>
+                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">TOEFL</span>
+                <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full font-medium">Общий английский</span>
+              </div>
+            </div>
+
+            <!-- Specializations -->
+            <div class="space-y-4 text-gray-700 text-center lg:text-left">
+              <div class="flex items-start gap-3 justify-center lg:justify-start">
+                <span class="text-xl mt-1">🎯</span>
+                <div>
+                  <p class="text-lg leading-relaxed">
+                    <strong class="text-gray-800">Специализируюсь на подготовке к международным экзаменам</strong> — 
+                    помогу сдать IELTS и TOEFL на нужный балл
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 justify-center lg:justify-start">
+                <span class="text-xl mt-1">💻</span>
+                <div>
+                  <p class="text-lg leading-relaxed">
+                    <strong class="text-gray-800">Веду живые онлайн-уроки для всех уровней:</strong> 
+                    от полного новичка до уверенного продвинутого
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 justify-center lg:justify-start">
+                <span class="text-xl mt-1">💬</span>
+                <div>
+                  <p class="text-lg leading-relaxed">
+                    <strong class="text-gray-800">Объясняю легко, увлекательно и по делу</strong> — 
+                    делаю английский понятным и результативным
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3 justify-center lg:justify-start">
+                <span class="text-xl mt-1">📚</span>
+                <div>
+                  <p class="text-lg leading-relaxed">
+                    <strong class="text-gray-800">Индивидуальный подход к каждому</strong> — 
+                    ваша цель становится моей задачей
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Message -->
+            <div class="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border-l-4 border-blue-500">
+              <p class="text-xl font-semibold text-center text-gray-800">
+                Говорите, пишите и думаете по-английски с удовольствием и уверенностью!
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-6">
+              <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    <path d="M18 12c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm0 1c-1.81 0-5.44.98-6 2.38.58-.08 1.2-.14 1.85-.14 2.48 0 6.15 1.11 6.15 2.86v1.1H23V18c0-2.21-3.35-3-5-3z"/>
+                    <path d="M6 12c1.66 0 3-1.34 3-3S7.66 6 6 6 3 7.34 3 9s1.34 3 3 3zm0 1c-1.65 0-5 1.79-5 3v1.1h3.15V16.86c0-1.75 3.67-2.86 6.15-2.86.65 0 1.27.06 1.85.14C10.56 13.02 7.81 13 6 13z"/>
+                  </svg>
+                </div>
+                <div class="text-blue-800 font-medium">Более 5000 выпускников</div>
+              </div>
+              
+              <div class="bg-blue-600 text-white px-4 py-2 rounded-full font-bold">
+                ⭐ Рейтинг 4.9/5
+              </div>
+              
+              <div class="text-blue-700 font-bold italic">
+                ✨ Авторская учебные пособия и методика преподавания ©
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-8 text-center lg:text-left">
+              <div class="flex items-center justify-center lg:justify-start gap-2 mb-4">
+                <span class="text-xl">📩</span>
+                <p class="text-lg font-semibold text-gray-800">Напишите, чтобы записаться на пробный урок</p>
+              </div>
+              <a href="#contact" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                <span>Записаться на пробный урок</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
