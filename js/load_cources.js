@@ -15,10 +15,15 @@ async function load_cources() {
               ${course.description}
             </p>
             <div class="flex flex-col gap-2 md:gap-3 mt-auto">
-              <a href="#contact">
-              <button class="purchase-btn w-full text-white text-lg md:text-base font-medium px-2 py-1 md:px-3 md:py-2 rounded-full transition-all duration-200" style="background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa);">Приобрести</button>
-              </a>
-              <button class="w-full text-blue-600 border-2 border-blue-600 rounded-full px-2 py-1 text-xs md:text-base font-medium hover:bg-blue-50 transition-all duration-200">Подробнее</button>
+              <div class="flex items-center gap-2">
+                <div class="bg-green-500 text-white px-2 py-1 rounded-lg text-lg md:text-base font-bold">
+                  ${course.price} L
+                </div>
+                <a href="#contact" class="flex-1">
+                  <button class="purchase-btn w-full text-white text-lg md:text-base font-medium px-2 py-1 md:px-3 md:py-2 rounded-full transition-all duration-200" style="background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa);">Приобрести</button>
+                </a>
+              </div>
+              <button class="w-full text-blue-600 border-2 border-blue-600 rounded-full px-2 py-1 text-xs md:text-base font-bold hover:bg-blue-50 transition-all duration-200">Подробнее</button>
             </div>
           </div>
         `;
