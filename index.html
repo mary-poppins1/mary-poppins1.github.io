@@ -334,19 +334,20 @@
               </svg>
             </a>
       </div>
-
-       <div class="relative">
-        <a href="#contact" class="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white px-12 py-5 rounded-full font-bold text-xl hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 hover:scale-105 border-2 border-white/30">
-          <span class="text-2xl">🚀</span>
-          <span class="text-2xl">Записаться</span>
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </a>
-        
-      
-        <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 opacity-30 animate-ping"></div>
-      </div>
+      <div class="relative"> 
+         <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 opacity-30 animate-ping"></div>
+        <div class="text-center mb-7">
+          <button id="appoint_free">
+            <a href="#contact" class="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white px-12 py-5 rounded-full font-bold text-xl hover:from-yellow-500 hover:via-orange-600 hover:to-red-600 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2 hover:scale-105 border-2 border-white/30">
+              <span class="text-2xl">🚀</span>
+              <span class="text-2xl">Записаться</span>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          </button>
+        </div>
+      </div> 
 
     
       <div class="mt-3 flex flex-wrap items-center justify-center gap-1 text-white/90">
@@ -396,12 +397,12 @@
           <div class="mb-2">
             <div class="relative">
               <button id="action-dropdown" class="w-full border-2 border-gray-200 p-4 rounded-2xl focus:border-blue-500 focus:outline-none transition-colors text-left flex justify-between items-center bg-white">
-                <span id="selected-action">Приобрести курс</span>
+                <span id="selected-action" data-value="buy">Приобрести курс</span>
                 <svg class="w-5 h-5 text-gray-400 transition-transform duration-200" id="dropdown-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
-              <div id="action-options" class="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-2xl shadow-lg mt-2 hidden max-h-48 overflow-y-auto">
+              <div id="action-options" class="absolute z-20 w-full bg-white border-2 border-gray-200 rounded-2xl shadow-lg mt-2 hidden max-h-58 overflow-y-auto">
                 <div class="p-2">
                   <button class="action-option w-full text-left p-3 rounded-xl hover:bg-blue-50 transition-colors" data-value="buy">
                     <div class="font-medium text-gray-800">Приобрести курс</div>
@@ -410,6 +411,10 @@
                   <button class="action-option w-full text-left p-3 rounded-xl hover:bg-blue-50 transition-colors" data-value="contact">
                     <div class="font-medium text-gray-800">Связаться для консультации</div>
                     <div class="text-sm text-gray-600">Хочу получить больше информации</div>
+                  </button>
+                  <button class="action-option w-full text-left p-3 rounded-xl hover:bg-blue-50 transition-colors" data-value="free-lesson">
+                    <div class="font-medium text-gray-800">Записаться на БЕСПЛАТНОЕ занятие</div>
+                    <div class="text-sm text-gray-600">Хочу попробовать обучение</div>
                   </button>
                 </div>
               </div>
@@ -437,13 +442,13 @@
           <!-- Contact Fields -->
           <div class="grid md:grid-cols-2 gap-4 mb-2">
             <div>
-              <label class="block text-gray-700 font-medium mb-1">Номер телефона</label>
+              <label class="block text-gray-700 font-medium mb-1">Телефон/WhatsApp/Telegram</label>
               <input type="tel" id="phone" placeholder="+373 (___) ___-__-__" class="w-full border-2 border-gray-200 p-4 rounded-2xl focus:border-blue-500 focus:outline-none transition-colors">
             </div>
-            <div>
+            <!-- <div>
               <label class="block text-gray-700 font-medium mb-1">Telegram</label>
               <input type="text" id="telegram" placeholder="@username" class="w-full border-2 border-gray-200 p-4 rounded-2xl focus:border-blue-500 focus:outline-none transition-colors">
-            </div>
+            </div> -->
           </div>
 
           <!-- Submit Button -->
@@ -603,16 +608,19 @@
           const text = this.querySelector('.font-medium').textContent;
           
           selectedAction.textContent = text;
-          currentAction = value;
+          selectedAction.dataset.value = value;
           actionOptions.classList.add('hidden');
           dropdownArrow.style.transform = 'rotate(0deg)';
           
           if (value === 'buy') {
             courseSelection.style.display = 'block';
             btnText.textContent = 'Приобрести курс';
-          } else {
+          } else if (value === 'contact') {
             courseSelection.style.display = 'none';
             btnText.textContent = 'Cвязаться со мной';
+          } else if (value === 'free-lesson') {
+            courseSelection.style.display = 'none';
+            btnText.textContent = 'Записаться';
           }
           
           checkFormValidity();
@@ -653,15 +661,27 @@
           });
         });
 
+        document.getElementById('appoint_free').addEventListener('click', function() {
+          console.log('Free lesson button clicked');
+          
+          selectedAction.textContent = 'Записаться на БЕСПЛАТНОЕ занятие';
+          selectedAction.dataset.value = 'free-lesson';
+          actionOptions.classList.add('hidden');
+          dropdownArrow.style.transform = 'rotate(0deg)';
+          courseSelection.style.display = 'none';
+          btnText.textContent = 'Записаться';
+          checkFormValidity();
+        });
+
       // Check form validity
       function checkFormValidity() {
-        const hasContact = phoneInput.value.trim() || telegramInput.value.trim();
+        const hasContact = phoneInput.value.trim();  //|| telegramInput.value.trim();
         submitBtn.disabled = !hasContact;
       }
 
       // Add input listeners
       phoneInput.addEventListener('input', checkFormValidity);
-      telegramInput.addEventListener('input', checkFormValidity);
+      // telegramInput.addEventListener('input', checkFormValidity);
     });
   </script>
 </body>

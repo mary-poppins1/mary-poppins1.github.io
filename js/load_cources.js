@@ -32,8 +32,16 @@ async function load_cources() {
         // Scroll to contact section on purchase
         block.querySelector('.purchase-btn').addEventListener('click', () => {
             const courseOption = document.querySelector(`.course-option[data-value="${course.name}"]`);
+            const selectedAction = document.getElementById('selected-action');
+            const courseSelection = document.getElementById('course-selection');
+            const btnText = document.getElementById('btn-text');
+
             window.select_some_course.call(courseOption);
-       
+            selectedAction.textContent = 'Приобрести курс';
+            selectedAction.dataset.value = 'buy';
+
+            courseSelection.style.display = 'block';
+            btnText.textContent = 'Приобрести курс';
         });
     });
 }
