@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>админпанель</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+      <p class="text-xl px-4 py-4"> Введите ваш github public access token</p>
+    <div class="flex items-center justify-left bg-gray-100">   
+        <input class="border w-96 border-gray-300 rounded-lg p-2" type="text" id="token" placeholder="GitHub Token">
+        <a class="mt-4 inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 group">
+            <button id="save_token">войти и проверить подключение</button>
+        </a>
+    </div>
+      
+    <div class="border border-gray-300 rounded-lg p-2" id="output">требуется подключиться с помощью токена</div>
+
+    <button id="get_courses" class="mt-4 inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 group">
+            <span>Начать редактировать курсы</span>
+    </button>
+
+    <button id="add_course" onclick="addCourse()" class=" mt-4 hidden inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 group">
+            <span>Добавить курс</span>
+    </button>
+
+   <button id="save_all" onclick="save_all_data()" class="ml-10 mt-4 hidden text-3xl inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-blue-600 text-white px-6 py-2 rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 group">
+            <span>Сохранить все изменения и отправить</span>
+    </button>
+
+    <div class="mt-4">
+        <h2 class="text-2xl font-bold mb-2">Список курсов:</h2>
+        <div id="courses_list" class="space-y-2 p-10"></div>
+    </div>
+
+    <button onclick="console.log(JSON.stringify(cources_data))"> json stringify</button>
+</body>
+<script>
+    let cources_data = null;
+    let SHA_json = null;
+    const savetoken_btn = document.getElementById('save_token');
+    const token_field = document.getElementById('token');
+    const output = document.getElementById('output');
+    const get_courses_btn = document.getElementById('get_courses');
+    const courses_list = document.getElementById('courses_list');
+
+    savetoken_btn.addEventListener('click',  async function() {
+        token = token_field.value;
+        try {
+             response = await fetch('https://api.github.com/repos/mary-poppins1/mary-poppins1.github.io', {
+                headers: {
+                    'Authorization': 'token ' + token,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Ошибка сети: ' + response.statusText);
+            }
+            output.innerHTML = 'Подключение успешно установлено!';
+            const data = await response.json();
+            output.innerHTML += `<br>Репозиторий: ${data.full_name} <br> Публичный: ${data.private ? 'Нет' : 'Да'}`;
+
+        } catch (error) {
+            output.innerHTML = 'Ошибка: ' + error.message;
+        }
+        
+
+    })
+
+    function from_base64(str) {
+        return decodeURIComponent(escape(atob(str)));
+    }
+
+    function to_base64(str) {
+        return btoa(unescape(encodeURIComponent(str)));
+    }
+    get_courses_btn.onclick = async function() {
+        if (!token) {
+            output.innerHTML = 'Пожалуйста, сначала введите ваш GitHub токен.';
+            return;
+        }
+        try {
+            const response = await fetch('https://api.github.com/repos/mary-poppins1/mary-poppins1.github.io/contents/cources.json', {
+                headers: {
+                    'Authorization': 'token ' + token,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Ошибка сети: ' + response.statusText);
+            }
+            const file = await response.json();
+            SHA_json = file.sha;
+            const content = from_base64(file.content);
+            cources_data = JSON.parse(content);
+            document.getElementById('add_course').classList.remove('hidden');
+            document.getElementById('save_all').classList.remove('hidden');
+            output.innerHTML += '<p>Курсы успешно загружены!</p>';
+            render_courses();
+        } catch (error) {
+            courses_list.innerHTML = '<p>Ошибка: ' + error.message + '</p>';
+        }
+    }
+
+    function render_courses() {
+        courses_list.innerHTML = '';
+        cources_data.forEach((course, id) => {
+            const courseDiv = document.createElement('div');
+            courseDiv.className = 'p-2 bg-white rounded-2xl shadow-md border border-gray-200 space-y-1 hover:shadow-lg transition-all duration-300';
+            COURSES_DATA = cources_data;
+            courseDiv.id = `course-${id}`;
+            course.id = id;
+            courseDiv.innerHTML = `
+                <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Название курса ${course.id+1}</label>
+                <input type="text" value="${course.title}" class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="cources_data[${course.id}].title = this.value">
+                </div>
+
+                <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Цена</label>
+                <input type="text" value="${course.price}" class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" onchange="cources_data[${course.id}].price = this.value">
+                </div>
+
+                <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Краткое описание</label>
+                <input type="text" value="${course.description}" class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" onchange="cources_data[${course.id}].description = this.value">
+                </div>
+
+                <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Полное описание (для страницы курса)</label>
+                <textarea rows="1" class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" onchange="cources_data[${course.id}].full_description = this.value">${course.full_description || ''}</textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Изображения курса</label>
+                    <div class="flex items-center gap-3 flex-wrap mb-2" id="preview-${course.id}"></div>
+                    <button onclick="document.getElementById('file-input-${course.id}').click()" 
+                            class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 text-white text-xl font-bold shadow-md hover:shadow-lg transition-all duration-200">
+                        +
+                    </button>
+                    <input type="file" multiple accept="image/*" id="file-input-${course.id}" 
+                            onchange="handleImageUpload(event, ${course.id})" class="hidden" />
+                </div>
+
+
+                <div class="text-right">
+                <button onclick="deleteCourse(${course.id})"
+                    class="inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold px-5 py-2 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
+                    🗑 Удалить курс
+                </button>
+                </div>
+            `;
+                courses_list.appendChild(courseDiv);
+        });
+    }
+ 
+    function handleImageUpload(event, id) {
+        const files = event.target.files;
+        const previewContainer = document.getElementById(`preview-${id}`);
+        if (!cources_data[id].images) cources_data[id].images = [];
+
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                cources_data[id].images.push(base64);
+
+                const imgWrapper = document.createElement('div');
+                imgWrapper.className = "relative w-24 h-24";
+
+                const img = document.createElement('img');
+                img.src = base64;
+                img.className = "w-full h-full object-cover rounded";
+
+                const delBtn = document.createElement('button');
+                delBtn.innerHTML = '✕';
+                delBtn.className = "absolute -top-2 -right-2 text-xs bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center";
+                delBtn.onclick = () => {
+                    const index = cources_data[id].images.indexOf(base64);
+                    if (index !== -1) {
+                        cources_data[id].images.splice(index, 1);
+                        imgWrapper.remove();
+                    }
+                };
+
+                imgWrapper.appendChild(img);
+                imgWrapper.appendChild(delBtn);
+                previewContainer.appendChild(imgWrapper);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+
+    function deleteCourse(id) {
+        console.log('Deleting course with id:', id);
+        cources_data.splice(id, 1);
+        render_courses();
+    }
+
+    function addCourse() {
+        console.log('Adding new course');
+
+        cources_data.unshift({
+            "price": "0",
+            "title": "Новый Курс",
+            "description": "Описание нового курса"
+        });
+        render_courses();
+
+    }
+
+    function save_all_data() {
+        const content = to_base64(JSON.stringify(cources_data, null, 2));
+        console.log(SHA_json);
+        
+        fetch('https://api.github.com/repos/mary-poppins1/mary-poppins1.github.io/contents/cources.json', {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'token ' + token,
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify({
+                message: "Обновление курсов",
+                content: content,
+                sha: SHA_json
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.content) {
+                output.innerHTML += 'ИЗМЕНЕНИЯ ЗАПИСАНЫ В РЕПОЗИТОРИЙ!!!';
+            } else {
+                output.innerHTML += 'Ошибка при сохранении курсов: ' + data.message;
+            }
+        })
+        .catch(error => {
+            output.innerHTML += 'Ошибка при сохранении курсов: ' + error.message;
+        });
+    }
+
+
+</script>
+</html>

@@ -391,7 +391,7 @@
         
         <div class="relative z-10">
           <h3 class="text-3xl md:text-4xl font-bold mb-1 text-center text-gray-800">Начните обучение сегодня!</h3>
-          <p class="text-center font-bold text-black-600 mb-1">Приобрести курс или связаться для уточнения информации</p>
+          <!-- <p class="text-center font-bold text-black-600 mb-1">Приобрести курс или связаться для уточнения информации</p> -->
 
           <!-- Action Type Selection -->
           <div class="mb-2">
@@ -632,7 +632,7 @@
         .then(response => response.json())
         .then(courses => {
           courseDropdownContent.innerHTML = courses.map(course => `
-            <button class="course-option w-full text-left p-3 rounded-xl hover:bg-blue-50 transition-colors" data-value="${course.name}">
+            <button class="course-option w-full text-left p-3 rounded-xl hover:bg-blue-50 transition-colors" data-value="${course.id}">
               <div class="font-medium text-gray-800">${course.title}</div>
               <div class="text-sm text-gray-600">${course.description}</div>
             </button>

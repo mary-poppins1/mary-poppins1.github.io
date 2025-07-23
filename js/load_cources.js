@@ -8,7 +8,7 @@ async function load_cources() {
         const block = document.createElement('div');
         block.className = "bg-white rounded-xl shadow-md overflow-hidden flex flex-row md:flex-col max-w-full md:max-w-xs w-full";
         block.innerHTML = `
-        <img src="cources/${course.name}1.jpg" alt="обложка курса" class="w-32 md:w-full md:h-48 object-cover md:object-cover flex-shrink-0">
+        <img src="${(course.images && course.images.length > 0) ? course.images[0] : "https://via.placeholder.com/150"}" alt="обложка курса" class="w-32 md:w-full md:h-48 object-cover md:object-cover flex-shrink-0">
           <div class="p-2 md:p-4 flex flex-col flex-grow">
             <h3 class="text-base text-xl md:text-xl font-bold mb-1 md:mb-2">${course.title}</h3>
             <p class="text-gray-600 mb-2 md:mb-4 flex-grow text-xs md:text-sm">
@@ -31,7 +31,7 @@ async function load_cources() {
         cources_container.appendChild(block);
         // Scroll to contact section on purchase
         block.querySelector('.purchase-btn').addEventListener('click', () => {
-            const courseOption = document.querySelector(`.course-option[data-value="${course.name}"]`);
+            const courseOption = document.querySelector(`.course-option[data-value="${course.id}"]`);
             const selectedAction = document.getElementById('selected-action');
             const courseSelection = document.getElementById('course-selection');
             const btnText = document.getElementById('btn-text');
