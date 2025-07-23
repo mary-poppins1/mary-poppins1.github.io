@@ -151,11 +151,39 @@
                 </button>
                 </div>
             `;
-                courses_list.appendChild(courseDiv);
+            courses_list.appendChild(courseDiv);
+            // Вставка в конец каждого блока цикла в render_courses:
+            if (course.images && course.images.length > 0) {
+                const previewContainer = courseDiv.querySelector(`#preview-${course.id}`);
+                course.images.forEach(base64 => {
+                    const imgWrapper = document.createElement('div');
+                    imgWrapper.className = "relative w-24 h-24";
+
+                    const img = document.createElement('img');
+                    img.src = base64;
+                    img.className = "w-full h-full object-cover rounded";
+
+                    const delBtn = document.createElement('button');
+                    delBtn.innerHTML = '✕';
+                    delBtn.className = "absolute -top-2 -right-2 text-xs bg-black bg-opacity-50 text-white rounded-full w-5 h-5 flex items-center justify-center";
+                    delBtn.onclick = () => {
+                        const index = course.images.indexOf(base64);
+                        if (index !== -1) {
+                            course.images.splice(index, 1);
+                            imgWrapper.remove();
+                        }
+                    };
+
+                    imgWrapper.appendChild(img);
+                    imgWrapper.appendChild(delBtn);
+                    previewContainer.appendChild(imgWrapper);
+                });
+            }
+
         });
     }
  
-    function handleImageUpload(event, id) {
+    /*function handleImageUpload(event, id) {
         const files = event.target.files;
         const previewContainer = document.getElementById(`preview-${id}`);
         if (!cources_data[id].images) cources_data[id].images = [];
@@ -189,6 +217,26 @@
                 previewContainer.appendChild(imgWrapper);
             };
             reader.readAsDataURL(file);
+        });
+    }*/
+
+        function handleImageUpload(event, id) {
+        const files = event.target.files;
+        if (!cources_data[id].images) cources_data[id].images = [];
+
+        const fileReaders = Array.from(files).map(file => {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    resolve(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        Promise.all(fileReaders).then(results => {
+            cources_data[id].images.push(...results);
+            render_courses(); // <-- теперь всё перерисуется заново с обновлёнными изображениями
         });
     }
 
