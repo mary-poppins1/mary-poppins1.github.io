@@ -23,7 +23,7 @@ async function load_cources() {
                   <button class="purchase-btn w-full text-white text-lg md:text-base font-medium px-2 py-1 md:px-3 md:py-2 rounded-full transition-all duration-200" style="background: linear-gradient(45deg, #2563eb, #3b82f6, #60a5fa);">Приобрести</button>
                 </a>
               </div>
-              <button class="w-full text-blue-600 border-2 border-blue-600 rounded-full px-2 py-1 text-xs md:text-base font-bold hover:bg-blue-50 transition-all duration-200">Подробнее</button>
+              <a href="course-page.html?course_id=${course.id}" class="w-full text-blue-600 border-2 border-blue-600 rounded-full px-2 py-1 text-xs md:text-base font-bold hover:bg-blue-50 transition-all duration-200">Подробнее</a>
             </div>
           </div>
         `;
