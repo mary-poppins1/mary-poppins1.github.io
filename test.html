@@ -133,6 +133,24 @@
                 </div>
 
                 <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Тезисный план курса</label>
+                    <div id="contents-list-${course.id}" class="space-y-2">
+                        ${(course.contents || []).map((item, idx) => `
+                            <div class="flex items-center gap-2">
+                                <input type="text" value="${item}" class="flex-1 px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    onchange="cources_data[${course.id}].contents[${idx}] = this.value">
+                                <button type="button" onclick="cources_data[${course.id}].contents.splice(${idx},1); render_courses();" 
+                                    class="text-red-500 hover:text-red-700 text-xl font-bold px-2">–</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button type="button" onclick="if(!cources_data[${course.id}].contents) cources_data[${course.id}].contents=[]; cources_data[${course.id}].contents.push(''); render_courses();"
+                        class="mt-2 inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 hover:bg-blue-600 text-white text-xl font-bold shadow transition-all duration-200">
+                        +
+                    </button>
+                </div>
+
+                <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Изображения курса</label>
                     <div class="flex items-center gap-3 flex-wrap mb-2" id="preview-${course.id}"></div>
                     <button onclick="document.getElementById('file-input-${course.id}').click()" 
