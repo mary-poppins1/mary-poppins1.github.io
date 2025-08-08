@@ -445,6 +445,7 @@
                             <video 
                                 id="mainVideo"
                                 class="w-full h-full object-cover"
+                                poster="video-placeholder.png"
                                 playsinline
                             >
                                 <!-- Здесь будет ваш видеофайл -->
@@ -967,7 +968,7 @@
         const consumer_contact = phoneInput.value.trim();
         console.log(selectedCourse.innerText);
         
-        fetch('https://slyapa.systems/', {
+        fetch('https://api.mary-poppins.pp.ua/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
