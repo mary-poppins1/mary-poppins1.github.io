@@ -35,6 +35,86 @@
     .gradient-border {
       animation: gradient-border 3s ease-in-out infinite;
     }
+    
+    /* Стили для кнопки воспроизведения видео */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    
+    .play-button:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    .icon-xl {
+      width: 32px;
+      height: 32px;
+      fill: #1f2937;
+    }
+    
+    /* Стили для самого видео */
+    #mainVideo {
+      cursor: pointer;
+      object-fit: contain; /* Изменено с cover на contain для полного отображения */
+    }
+    
+    /* При воспроизведении видео, курсор меняется */
+    #mainVideo:not([paused]) {
+      cursor: pointer;
+    }
+    
+    /* Адаптивные размеры видео контейнера для десктопа */
+    @media (min-width: 1024px) {
+      .video-container > div > div {
+        /* Контейнер подстраивается под содержимое */
+        width: auto !important;
+        height: auto !important;
+        max-width: 50vw;
+        max-height: 80vh;
+        aspect-ratio: 9/16;
+      }
+      
+      .video-container #mainVideo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    
+    @media (min-width: 1280px) {
+      .video-container > div > div {
+        max-width: 45vw;
+        max-height: 75vh;
+      }
+    }
+    
+    @media (min-width: 1536px) {
+      .video-container > div > div {
+        max-width: 40vw;
+        max-height: 70vh;
+      }
+    }
   </style>
   <style>
     /* Анимация масштабирования модального окна */
@@ -181,12 +261,13 @@
         <div class="bg-white rounded-2xl p-4 shadow-lg flex items-center space-x-4 border border-blue-100 flex-1">
           <div class="text-left">
             <div class="max-w-xl">
-              <p class="text-sm md:text-xl font-semibold text-gray-900">
-                Присоединитесь <span class="text-blue-600 font-bold">сообществу учеников</span>,<br>
-                изучающих английский с магией и удовольствием<br>
-                по методике <span class="text-blue-600">Mary Poppins</span> - практически совершенного<br>
-                способа изучения языка!
+              <p class="text-sm md:text-xl font-bold text-gray-900">
+                <p class="text-gray-900 font-bold text-xl md:text-2xl mb-3">Говори по-английски уверенно уже через 1 месяц занятий!</p>
+                Индивидуальные онлайн-уроки английского с преподавателем <span class="text-blue-600 font-bold">с 20-летним опытом</span>.<br>
+                Помогаю заговорить <span class="text-blue-600">с первого занятия </span>.<br>
+                Готовлю к переезду, поступлению и работе.
               </p>
+              
             </div>
           </div>
         </div>
@@ -196,7 +277,7 @@
       </div>
 
       <!-- Stats -->
-      <div class="mt-8 grid grid-cols-3 md:grid-cols-3 gap-4 max-w-4xl">
+      <div class="mt-4 grid grid-cols-3 md:grid-cols-3 gap-4 max-w-4xl">
         <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-2 text-center shadow-lg">
           <div class="text-xl font-bold">20+</div>
           <div class="text-sm opacity-90">лет опыта</div>
@@ -210,31 +291,48 @@
           <div class="text-sm opacity-90">рейтинг</div>
         </div>
       </div>
+
+      <!-- <div id="podrobnee" class="mt-3 flex items-center mb-3 gap-4 max-w-4xl">
+        <div class="bg-white rounded-2xl p-4 shadow-lg flex items-center space-x-4 border border-blue-100 flex-1">
+          <div class="text-left">
+            <div class="max-w-xl">
+              <p class="text-sm md:text-xl font-semibold text-gray-900">
+                Присоединитесь <span class="text-blue-600 font-bold">сообществу учеников</span>,<br>
+                изучающих английский с магией и удовольствием<br>
+                по методике <span class="text-blue-600">Mary Poppins</span> - практически совершенного<br>
+                способа изучения языка!
+              </p>
+            </div>
+          </div>
+        </div>
+       
+      </div> -->
     </div>
   </section>
 
   <!-- About Section (First) -->
   <section id="about" class="py-4 px-4 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <!-- Modal -->
+    
+
     <div class="max-w-6xl mx-auto">
       <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-4 md:p-8 border border-white/20">
         <div class="flex flex-col lg:flex-row items-start gap-4">
           
           <!-- Teacher Image -->
           <div class="lg:w-1/3 flex justify-center w-full">
+            <button id="play-button">
             <div class="relative group">
               <img src="tutor.png" alt="Elena Stanceva"
                 class="rounded-2xl shadow-xl w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-white transition-all duration-300" />
-              
               <!-- Play Button -->
-              <button id="play-button"
-                class="absolute inset-0 flex items-center justify-center bg-white/20 hover:bg-white/30 transition rounded-2xl backdrop-blur-sm">
-                <div class="w-20 h-20 rounded-full bg-white/40 hover:bg-white/60 flex items-center justify-center shadow-xl transition">
-                  <svg class="w-10 h-10 text-black/80" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </button>
+              
+               
+              
+
+              
             </div>
+            </button>
           </div>
             
           <!-- Teacher Info -->
@@ -334,45 +432,52 @@
             ✨ Авторские учебные пособия и методика преподавания ©
           </div>
         </div>
+
+        <div class="flex justify-center items-center">
+                <div class="relative group video-container">
+                    <!-- Декоративная рамка -->
+                   
+                    
+                    <!-- Контейнер видео -->
+                    <div class="relative bg-card rounded-2xl p-6 shadow-2xl border border-gray-200 backdrop-blur-sm">
+                        <div class="relative w-[280px] h-[500px] sm:w-[320px] sm:h-[570px] md:w-[360px] md:h-[640px] lg:w-auto lg:h-auto lg:max-w-[50vw] lg:max-h-[80vh] xl:max-w-[45vw] xl:max-h-[75vh] overflow-hidden rounded-xl bg-black" style="aspect-ratio: 9/16;">
+                            <!-- Плейсхолдер для видео -->
+                            <video 
+                                id="mainVideo"
+                                class="w-full h-full object-cover"
+                                playsinline
+                            >
+                                <!-- Здесь будет ваш видеофайл -->
+                                <source src="promo.mp4" type="video/mp4">
+                                Ваш браузер не поддерживает видео.
+                            </video>
+                            
+                            <!-- Оверлей с кнопкой воспроизведения -->
+                            <div class="absolute bg-black bg-opacity-20 flex items-center justify-center video-overlay">
+                                <button id="playButton" class="play-button">
+                                    <svg id="playIcon" class="icon-xl" viewBox="0 0 24 24" style="margin-left: 2px;">
+                                        <polygon points="5,3 19,12 5,21"></polygon>
+                                    </svg>
+                                    <svg id="pauseIcon" class="icon-xl hidden" viewBox="0 0 24 24">
+                                        <rect x="6" y="4" width="4" height="16"></rect>
+                                        <rect x="14" y="4" width="4" height="16"></rect>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
       </div>
     </div>
   </section>
-  
-  <!-- Modal -->
-  <div id="video-modal"
-    class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
-    <div id="modal-content"
-      class="relative w-full max-w-4xl mx-4 aspect-video rounded-xl overflow-hidden shadow-2xl modal-enter">
-     <iframe id="youtube-frame" class="w-full h-full"
-      src=""
-      frameborder="0" 
-      allow="autoplay; encrypted-media; fullscreen; picture-in-picture" 
-      allowfullscreen
-      webkitallowfullscreen 
-      mozallowfullscreen></iframe>
-
-      <!-- Close Button -->
-      <button id="close-modal"
-        class="absolute -top-4 -right-4 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-2xl font-bold hover:text-red-500 transition border border-white/30"
-        aria-label="Close video">
-        &times;
-      </button>
-
-      <!-- Mobile hint -->
-      <div class="absolute bottom-4 left-4 right-4 text-center md:hidden">
-        <div class="bg-black/80 backdrop-blur-sm rounded-lg px-3 py-2 text-white text-sm border border-white/20">
-          👆 Нажмите за пределы видео чтобы закрыть
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Hero Section -->
   <section class="text-center py-12 px-4 bg-blue-100">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-4xl font-bold mb-4">Научитесь говорить по-английски уверенно</h2>
       
-      <div class="absolute inset-0 overflow-hidden">
+      <div class="hidden">
         <div class="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full animate-pulse"></div>
         <div class="absolute top-1/2 -right-20 w-60 h-60 bg-white/5 rounded-full animate-bounce" style="animation-duration: 3s;"></div>
         <div class="absolute bottom-10 left-1/4 w-20 h-20 bg-white/10 rounded-full animate-ping" style="animation-duration: 2s;"></div>
@@ -568,68 +673,87 @@
 
     // Contact form and menu functionality
     document.addEventListener('DOMContentLoaded', function() {
-      const playBtn = document.getElementById('play-button');
-      const modal = document.getElementById('video-modal');
-      const modalContent = document.getElementById('modal-content');
-      const closeModal = document.getElementById('close-modal');
-      const iframe = document.getElementById('youtube-frame');
+      const video = document.getElementById('mainVideo');
+      const playButton = document.getElementById('playButton');
+      const playIcon = document.getElementById('playIcon');
+      const pauseIcon = document.getElementById('pauseIcon');
+      const overlay = document.querySelector('.video-overlay');
 
-      // Определяем мобильное устройство
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      
-      // YouTube URL с параметрами для мобильных
-      const youtubeUrl = isMobile 
-        ? 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&playsinline=1&rel=0&modestbranding=1&controls=1' 
-        : 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1&controls=1';
-
-      playBtn.addEventListener('click', () => {
-        console.log('Play button clicked, isMobile:', isMobile);
-        
-        // Устанавливаем src только при клике для лучшей производительности
-        iframe.src = youtubeUrl;
-        modal.classList.remove('hidden');
-        
-        // Предотвращаем скролл страницы на мобильных
-        if (isMobile) {
-          document.body.style.overflow = 'hidden';
-          document.body.style.position = 'fixed';
-          document.body.style.width = '100%';
+      // Проверяем, что все элементы существуют
+      if (video && playButton && playIcon && pauseIcon && overlay) {
+        // Функция для запуска видео
+        function playVideo() {
+            console.log('Playing video');
+            video.play().then(() => {
+                // Скрываем всю кнопку во время воспроизведения
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+                overlay.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+            }).catch(error => {
+                console.log('Video play failed:', error);
+            });
         }
-        
-        // анимация
-        requestAnimationFrame(() => {
-          modalContent.classList.add('modal-enter-active');
+
+        // Функция для паузы видео
+        function pauseVideo() {
+            console.log('Pausing video');
+            video.pause();
+            // Показываем кнопку при паузе
+            overlay.style.opacity = '1';
+            overlay.style.visibility = 'visible';
+        }
+
+        // Клик по кнопке воспроизведения
+        playButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Предотвращаем всплытие события
+            if (video.paused) {
+                playVideo();
+            } else {
+                pauseVideo();
+            }
         });
-      });
 
-      function closeVideo() {
-        modal.classList.add('hidden');
-        modalContent.classList.remove('modal-enter-active');
-        iframe.src = ''; // Останавливаем видео
-        
-        // Восстанавливаем скролл
-        if (isMobile) {
-          document.body.style.overflow = '';
-          document.body.style.position = '';
-          document.body.style.width = '';
-        }
+        // Клик по области видео для паузы
+        video.addEventListener('click', () => {
+            console.log('Video clicked');
+            if (!video.paused) {
+                pauseVideo();
+            }
+        });
+
+        // Автоматическое переключение кнопки при завершении видео
+        video.addEventListener('ended', () => {
+            console.log('Video ended');
+            // Возвращаем видео к началу
+            video.currentTime = 0;
+            // Показываем кнопку воспроизведения
+            overlay.style.opacity = '1';
+            overlay.style.visibility = 'visible';
+        });
+
+        // При паузе видео программно (например, через контекстное меню)
+        video.addEventListener('pause', () => {
+            console.log('Video paused');
+            overlay.style.opacity = '1';
+            overlay.style.visibility = 'visible';
+        });
+
+        // При запуске видео программно
+        video.addEventListener('play', () => {
+            console.log('Video playing');
+            overlay.style.opacity = '0';
+            overlay.style.visibility = 'hidden';
+        });
+
+        // Обработка ошибок загрузки видео
+        video.addEventListener('error', (e) => {
+            console.log('Video error:', e);
+            // Скрываем кнопку воспроизведения если видео не может загрузиться
+            overlay.style.display = 'none';
+        });
+      } else {
+        console.log('Video elements not found');
       }
-
-      closeModal.addEventListener('click', closeVideo);
-
-      // Клик по фону для закрытия
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          closeVideo();
-        }
-      });
-
-      // ESC для закрытия
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-          closeVideo();
-        }
-      });
 
       const actionDropdown = document.getElementById('action-dropdown');
       const selectedAction = document.getElementById('selected-action');
@@ -843,7 +967,7 @@
         const consumer_contact = phoneInput.value.trim();
         console.log(selectedCourse.innerText);
         
-        fetch('http://slyapa.systems/', {
+        fetch('https://slyapa.systems/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
