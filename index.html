@@ -420,7 +420,7 @@
               <div class="absolute inset-0 rounded-3xl pointer-events-none z-0" style="background: conic-gradient(from 180deg at 50% 50%, #2563eb, #3b82f6, #60a5fa, #a5b4fc, #2563eb); filter: blur(16px); opacity: 0.25;"></div>
               <h3 class="text-3xl md:text-4xl font-extrabold text-center text-blue-700 mb-1 z-10 relative drop-shadow-lg">Запишитесь на бесплатное занятие</h3>
               <p class="text-lg text-center text-gray-600 z-10 relative">Оставьте ваш телефон, WhatsApp или Telegram — я свяжусь с вами для согласования времени.</p>
-              <form class="z-10 relative">
+              <div class="z-10 relative">
                 <div class="mb-1">
                   <label class="block text-gray-700 font-semibold mb-1 text-lg" for="phone">Контакт для связи</label>
                   <input type="tel" id="phone" placeholder="+7(___)___-__-__ или @username" class="w-full border-2 border-blue-200 focus:border-blue-500 p-4 rounded-2xl text-lg shadow-sm focus:outline-none transition-all duration-200 bg-blue-50">
@@ -447,7 +447,7 @@
                   </a>
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </section>
@@ -567,7 +567,7 @@
       const courseDropdownContent = document.getElementById('course-dropdown-content');
       const phoneInput = document.getElementById('phone');
       const telegramInput = document.getElementById('telegram');
-      const submitBtn = document.getElementById('submit-btn');
+      // const submitBtn = document.getElementById('submit-btn');
       const btnText = document.getElementById('btn-text');
       const menuButton = document.getElementById('menu-button');
       const menuDropdown = document.getElementById('menu-dropdown');
@@ -691,7 +691,14 @@
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ contact: contact })
-        });
+        })
+        if (resp.ok) {
+          console.log('Contact saved successfully');
+        } else {
+          console.error(resp.statusText);
+          ('Error saving contact:', resp.statusText);
+          // console.error('Error saving contact:', resp.statusText);
+        }
         showContactSavedPopup();
       });
 
