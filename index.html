@@ -683,9 +683,9 @@
         contactForm.classList.remove('hidden');
       });
 
-      submit_btn.addEventListener('click', async function() {
+      submit_btn.addEventListener('click', function() {
         const contact = phoneInput.value.trim();
-        resp = await fetch('https://api.mary-poppins.pp.ua/', {
+        resp = fetch('https://api.mary-poppins.pp.ua/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -695,8 +695,8 @@
         showContactSavedPopup();
       });
 
-      whatsapp_btn.addEventListener('click', async function() {
-        resp = await fetch('https://api.mary-poppins.pp.ua/', {
+      whatsapp_btn.addEventListener('click', function() {
+        resp = fetch('https://api.mary-poppins.pp.ua/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
