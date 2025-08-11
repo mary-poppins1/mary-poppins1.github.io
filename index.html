@@ -683,11 +683,26 @@
         contactForm.classList.remove('hidden');
       });
 
-      submit_btn.addEventListener('click', function() {
+      submit_btn.addEventListener('click', async function() {
+        const contact = phoneInput.value.trim();
+        resp = await fetch('https://api.mary-poppins.pp.ua/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ contact: contact })
+        });
         showContactSavedPopup();
       });
 
-      whatsapp_btn.addEventListener('click', function() {
+      whatsapp_btn.addEventListener('click', async function() {
+        resp = await fetch('https://api.mary-poppins.pp.ua/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ contact: "WhatsApp btn pressed." })
+        });
         showContactSavedPopup();
       });
 
