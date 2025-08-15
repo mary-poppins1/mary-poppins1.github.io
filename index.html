@@ -252,7 +252,7 @@
       <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gray-900" style="line-height: 1.2;">
         ГОВОРИ <br class="mb-5"><span class="text-blue-700 mb-5">ПО-АНГЛИЙСКИ</span>
         <br>УВЕРЕННО<br>
-        <span class="text-blue-700">УЖЕ ЧЕРЕЗ НЕДЕЛЮ!</span>
+        <span class="text-blue-700">УЖЕ ЧЕРЕЗ МЕСЯЦ!</span>
       </h1>
       
       
@@ -474,44 +474,103 @@
 
   </section> 
   <!-- Секция с видеоотзывами учеников -->
-  <section class="bg-blue-50 py-4 px-4">
+  <section id="video-feedback" class="bg-blue-50 py-1 px-4">
     <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-extrabold text-center text-blue-700 mb-8">Почему ученики выбирают меня</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
+      <h2 class="text-4xl font-extrabold text-center text-blue-700 mt-4 mb-8">Почему ученики выбирают меня</h2>
 
+      <!-- Контейнер слайдера -->
+      <div class="relative"> <!-- Появляется только на мобилках -->
+        <!-- Кнопка влево -->
+        <button id="prevBtn"
+          class="absolute left-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white rounded-full p-5 text-3xl shadow-md z-10 hover:bg-blue-700">
+          &#10094;
+        </button>
 
-        <div class="bg-white rounded-2xl shadow-lg p-1 flex flex-col items-center">
-          <iframe class="rounded-xl" width="322" height="573" src="https://www.youtube.com/embed/pHnGtmghgTM" title="4 августа 2025 г." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        
-        <div class="bg-white rounded-2xl shadow-lg p-1 flex flex-col items-center">
-          <!-- <div class="w-full aspect-video bg-gray-200 rounded-xl flex items-center justify-center mb-3"> -->
-            <iframe class="rounded-xl" width="322" height="573" src="https://www.youtube.com/embed/FfNyZq_SqkQ" title="4 августа 2025 г." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <!-- </div> -->
-        </div>
-        
-        <div class="bg-white rounded-2xl shadow-lg p-1 flex flex-col items-center">
-          <!-- <div class="w-full aspect-video bg-gray-200 rounded-xl flex items-center justify-center mb-3"> -->
-            <iframe class="rounded-xl" width="322" height="573" src="https://www.youtube.com/embed/laV26jCmf2k" title="4 августа 2025 г." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- Лента -->
+        <div id="slider"
+          class="flex  snap-x snap-mandatory transition-transform duration-500">
+          
+          <div class="flex-shrink-0 w-full snap-center flex justify-center">
+            <iframe class="rounded-xl shadow-lg" width="322" height="573"
+              src="https://www.youtube.com/embed/pHnGtmghgTM" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
 
-          <!-- </div> -->
+          <div class="flex-shrink-0 w-full snap-center flex justify-center">
+            <iframe class="rounded-xl shadow-lg" width="322" height="573"
+              src="https://www.youtube.com/embed/FfNyZq_SqkQ" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+
+          <div class="flex-shrink-0 w-full snap-center flex justify-center">
+            <iframe class="rounded-xl shadow-lg" width="322" height="573"
+              src="https://www.youtube.com/embed/laV26jCmf2k" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+
+          <div class="flex-shrink-0 w-full snap-center flex justify-center">
+            <iframe class="rounded-xl shadow-lg" width="322" height="573"
+              src="https://www.youtube.com/embed/3f_1CpfOtuI" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+
+          <div class="flex-shrink-0 w-full snap-center flex justify-center">
+            <iframe class="rounded-xl shadow-lg" width="315" height="573"
+              src="https://www.youtube.com/embed/i4Jzf7xeTcM" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </div>
 
-        <div class="bg-white rounded-2xl shadow-lg p-1 flex flex-col items-center">
-          <!-- <div class="w-full aspect-video bg-gray-200 rounded-xl flex items-center justify-center mb-3"> -->
-            <iframe class="rounded-xl" width="322" height="573" src="https://www.youtube.com/embed/3f_1CpfOtuI" title="4 августа 2025 г." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <!-- </div> -->
-        </div>
-
-        <div class="bg-white rounded-2xl shadow-lg p-1 flex flex-col items-center">
-          <iframe class="rounded-xl" width="315" height="573" src="https://www.youtube.com/embed/i4Jzf7xeTcM" title="Почему мне понравилось учиться английскому онлайн у Елены Станчевой" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-
-        </div>
+        <!-- Кнопка вправо -->
+        <button id="nextBtn"
+          class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white rounded-full p-5 text-3xl shadow-md z-10 hover:bg-blue-700">
+          &#10095;
+        </button>
       </div>
     </div>
   </section>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+    const totalSlides = slider.children.length;
+
+    function showSlide(index) {
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      slider.style.transform = `translateX(-${index * 100}%)`;
+      currentIndex = index;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      showSlide(currentIndex + 1);
+    });
+
+    prevBtn.addEventListener('click', () => {
+      showSlide(currentIndex - 1);
+    });
+
+    // свайп на мобилках
+    let startX = 0;
+    slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    slider.addEventListener('touchend', e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) showSlide(currentIndex + 1); // свайп влево
+      if (endX - startX > 50) showSlide(currentIndex - 1); // свайп вправо
+    });
+
+    // показать первый слайд
+    showSlide(0);
+  </script>
+
 
   <script>
   // Шторка всегда видима и не сжимается при прокрутке
